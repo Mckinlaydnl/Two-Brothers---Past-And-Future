@@ -11,7 +11,9 @@ public class PlayerOneFightScript : MonoBehaviour
     private Animator Player1Anim;
     int PunchHash = Animator.StringToHash("Punch");
     public Collider[] attackHitBoxes;
-   
+ 
+    
+
 
     private void Start()
     {
@@ -21,7 +23,13 @@ public class PlayerOneFightScript : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        // Locks the player on the z-Axis
+        Vector3 pos = transform.position;
+        pos.z = 0;
+        transform.position = pos;
+
+        // Attack Inputs
+        if (Input.GetKeyDown(KeyCode.O))
         {
             StartAttack(attackHitBoxes[0]);
             Player1Anim.SetTrigger(PunchHash);
@@ -48,12 +56,14 @@ public class PlayerOneFightScript : MonoBehaviour
         //Initialise movementVector
         movementVector = Vector3.zero;
 
-        //Movement for the game
+        //Movement for the game    
+
         // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
         movementVector.x = Input.GetAxis("Horizontal") * 3;
 
         // Lets the animator know if the player is moving and uses the appropriate animation
         Player1Anim.SetFloat("Speed", movementVector.x);
+
         // This is the players vertical movement. This makes it so the player is effected by gravity and can jump.
         movementVector.y = verticalVelocity;
 
@@ -64,6 +74,7 @@ public class PlayerOneFightScript : MonoBehaviour
 
     private void StartAttack (Collider collider)
     {
+        // Detects if the hitbox overlaps the enemy players hitbox.
         Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation, LayerMask.GetMask("HitBox"));
         foreach (Collider c in colliders)
         {
