@@ -12,16 +12,15 @@ public class PlayerOneFightScript : MonoBehaviour
     int PunchHash = Animator.StringToHash("Punch");
     int KickHash = Animator.StringToHash("Kick");
     public Collider[] attackHitBoxes;
- 
-    
-
-
+  
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         Player1Anim = GetComponent<Animator>();
+
     }
 
+  
     private void Update()
     {
         // Locks the player on the z-Axis
@@ -40,6 +39,7 @@ public class PlayerOneFightScript : MonoBehaviour
         {
             StartAttack(attackHitBoxes[1]);
             Player1Anim.SetTrigger(KickHash);
+
         }
         if(controller.isGrounded)
         {
@@ -84,6 +84,10 @@ public class PlayerOneFightScript : MonoBehaviour
                 continue;
 
             Debug.Log(c.name);
+
+            float damage = 10;
+
+            c.SendMessageUpwards("RecieveDamage", damage);
         }
             
     }
