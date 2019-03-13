@@ -10,6 +10,7 @@ public class PlayerOneFightScript : MonoBehaviour
     private float verticalVelocity;
     private Animator Player1Anim;
     int PunchHash = Animator.StringToHash("Punch");
+    int KickHash = Animator.StringToHash("Kick");
     public Collider[] attackHitBoxes;
  
     
@@ -38,6 +39,7 @@ public class PlayerOneFightScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             StartAttack(attackHitBoxes[1]);
+            Player1Anim.SetTrigger(KickHash);
         }
         if(controller.isGrounded)
         {
