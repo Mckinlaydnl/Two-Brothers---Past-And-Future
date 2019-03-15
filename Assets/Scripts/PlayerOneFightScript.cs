@@ -12,6 +12,8 @@ public class PlayerOneFightScript : MonoBehaviour
     int PunchHash = Animator.StringToHash("Punch");
     int KickHash = Animator.StringToHash("Kick");
     public Collider[] attackHitBoxes;
+    private float timeBetweenAttacks = 0.3f;
+    private float attackTimer;
   
     private void Start()
     {
@@ -29,17 +31,18 @@ public class PlayerOneFightScript : MonoBehaviour
         transform.position = pos;
 
         // Attack Inputs
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.O)))
         {
             StartAttack(attackHitBoxes[0]);
             Player1Anim.SetTrigger(PunchHash);
+            attackTimer = Time.time + timeBetweenAttacks;
 
         }
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.P)))
         {
             StartAttack(attackHitBoxes[1]);
             Player1Anim.SetTrigger(KickHash);
-
+            attackTimer = Time.time + timeBetweenAttacks;
         }
         if(controller.isGrounded)
         {
@@ -85,8 +88,10 @@ public class PlayerOneFightScript : MonoBehaviour
 
             Debug.Log(c.name);
 
-            float damage = 10;
+            // Set up the damage for each hit
+            float damage = 5;
 
+            // Tells the enemy that they have taken damage
             c.SendMessageUpwards("RecieveDamage", damage);
         }
             
