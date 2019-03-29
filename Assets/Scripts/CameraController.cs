@@ -4,22 +4,60 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject player;       //Public variable to store a reference to the player game object
-
-
-    private Vector3 offset;         //Private variable to store the offset distance between the player and camera
+   
+    private Transform[] playerTransforms; // Array for all the players
+    public float yOffSet = 2.0f; //Private variable to store the yoffset distance between the players and camera
+    public float minDistance = 7.5f;
+    private float xMin, xMax, yMin, yMax;
 
     // Use this for initialization
     void Start()
     {
-        //Calculate and store the offset value by getting the distance between the player's position and camera's position.
-        offset = transform.position - player.transform.position;
+        // Find all the players and fill the array with them
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        playerTransforms = new Transform[allPlayers.Length];
+        for(int i = 0; i < allPlayers.Length; i++)
+        {
+            playerTransforms[i] = allPlayers[i].transform;
+        }
     }
 
     // LateUpdate is called after Update each frame
     void LateUpdate()
     {
-        // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
-        transform.position = player.transform.position + offset;
+        // For debugging
+       if(playerTransforms.Length == 0)
+        {
+            Debug.Log("Idiot, there are no players");
+            return;
+        }
+
+        xMin = xMax = playerTransforms[0].position.x;
+        yMin = yMax = playerTransforms[0].position.y;
+        for(int i = 1; i < playerTransforms.Length; i++)
+        {
+            if (playerTransforms[i].position.x < xMin)
+                xMin = playerTransforms[i].position.x;
+
+            if (playerTransforms[i].position.y > xMax)
+                xMax = playerTransforms[i].position.x;
+
+            if (playerTransforms[i].position.y < yMin)
+                yMin = playerTransforms[i].position.y;
+
+            if (playerTransforms[i].position.y > yMax)
+                yMax = playerTransforms[i].position.y;
+        }
+
+        float xMiddle = (xMin + xMax) / 2;
+        float yMiddle = (yMin + yMax) / 2;
+        float distance = xMax - xMin;
+        if (distance < minDistance)
+            distance = minDistance;
+
+        
+        transform.position = new Vector3(xMiddle, yMiddle, -distance);
+       
+
     }
 }
