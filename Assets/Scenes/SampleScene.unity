@@ -385,6 +385,18 @@ Prefab:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: cf3910b7639e12447827e45f63f60201, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: cf3910b7639e12447827e45f63f60201, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: cf3910b7639e12447827e45f63f60201, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -0.14504
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf3910b7639e12447827e45f63f60201, type: 3}
   m_IsPrefabAsset: 0
@@ -553,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 414743015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.13, y: -2.11, z: 0}
-  m_LocalScale: {x: 100, y: 4.2711654, z: 1.2752197}
+  m_LocalScale: {x: 100, y: 4.2711654, z: 40.96384}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -569,14 +581,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450546783}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a377703d0310c947a569bcfaa3d4351, type: 3}
+  m_Script: {fileID: 11500000, guid: 18e18af0e8bb0ce4998e18bfe8e39777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackHitBoxes:
-  - {fileID: 160712298}
-  - {fileID: 646867836}
+  attackHitBoxes: []
 --- !u!143 &450546785
 CharacterController:
   m_ObjectHideFlags: 0
@@ -685,18 +695,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: cf3910b7639e12447827e45f63f60201,
     type: 3}
   m_PrefabInternal: {fileID: 199962506}
---- !u!114 &503139794
-MonoBehaviour:
+--- !u!95 &503139794
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503139791}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a377703d0310c947a569bcfaa3d4351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackHitBoxes: []
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!143 &503139795
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503139791}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.1512372
+  m_Radius: 1.8570683
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1184,10 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: cf3910b7639e12447827e45f63f60201, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf3910b7639e12447827e45f63f60201, type: 3}
   m_IsPrefabAsset: 0
@@ -1601,6 +1638,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.05, z: 0}
+--- !u!1 &1940514014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: cf3910b7639e12447827e45f63f60201,
+    type: 3}
+  m_PrefabInternal: {fileID: 1465610814}
+--- !u!143 &1940514017
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940514014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.1512363
+  m_Radius: 1.8570683
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1959899401
 GameObject:
   m_ObjectHideFlags: 0
