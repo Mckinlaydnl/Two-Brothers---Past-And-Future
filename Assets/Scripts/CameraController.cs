@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+       // Moves camera depending on the players position to each other.
         xMin = xMax = playerTransforms[0].position.x;
         yMin = yMax = playerTransforms[0].position.y;
         for(int i = 1; i < playerTransforms.Length; i++)
@@ -56,7 +57,7 @@ public class CameraController : MonoBehaviour
             distance = minDistance;
 
         
-        transform.position = new Vector3(xMiddle, yMiddle, -distance);
+        transform.position = new Vector3(xMiddle, yMiddle + 1, -distance);
        
 
     }

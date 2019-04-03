@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTwoFightScript : MonoBehaviour
+public class PlayerTwoFighterScript : MonoBehaviour
 {
     // Declare Variables
     private CharacterController controller;
@@ -48,7 +48,7 @@ public class PlayerTwoFightScript : MonoBehaviour
         {
             verticalVelocity = -1;
             // If the player has pressed space, let them jump.
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
 
                 verticalVelocity = 10;
