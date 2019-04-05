@@ -31,14 +31,14 @@ public class PlayerTwoFighterScript : MonoBehaviour
         transform.position = pos;
 
         // Attack Inputs
-        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.O)))
+        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.K)))
         {
             StartAttack(attackHitBoxes[0]);
             Player2Anim.SetTrigger(PunchHash);
             attackTimer = Time.time + timeBetweenAttacks;
 
         }
-        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.P)))
+        if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.L)))
         {
             StartAttack(attackHitBoxes[1]);
             Player2Anim.SetTrigger(KickHash);
@@ -64,7 +64,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
         //Movement for the game    
 
         // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
-        movementVector.x = Input.GetAxis("Horizontal") * 3;
+        movementVector.x = Input.GetAxis("Horizontal2") * 3;
 
         // Lets the animator know if the player is moving and uses the appropriate animation
         Player2Anim.SetFloat("Speed", movementVector.x);
