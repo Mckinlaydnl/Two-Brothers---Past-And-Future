@@ -33,14 +33,14 @@ public class PlayerTwoFighterScript : MonoBehaviour
         // Attack Inputs
         if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.K)))
         {
-            StartAttack(attackHitBoxes[0]);
+            StartSecondPlayerAttack(attackHitBoxes[0]);
             Player2Anim.SetTrigger(PunchHash);
             attackTimer = Time.time + timeBetweenAttacks;
 
         }
         if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.L)))
         {
-            StartAttack(attackHitBoxes[1]);
+            StartSecondPlayerAttack(attackHitBoxes[1]);
             Player2Anim.SetTrigger(KickHash);
             attackTimer = Time.time + timeBetweenAttacks;
         }
@@ -77,7 +77,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
 
     }
 
-    private void StartAttack(Collider collider)
+    private void StartSecondPlayerAttack(Collider collider)
     {
         // Detects if the hitbox overlaps the enemy players hitbox.
         Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation, LayerMask.GetMask("HitBox"));

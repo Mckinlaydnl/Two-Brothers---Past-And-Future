@@ -56,6 +56,7 @@ public class CameraController : MonoBehaviour
         if (distance < minDistance)
             distance = minDistance;
 
+
         
         transform.position = new Vector3(xMiddle, yMiddle + 1, -distance);
        

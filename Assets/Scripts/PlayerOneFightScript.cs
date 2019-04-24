@@ -11,10 +11,13 @@ public class PlayerOneFightScript : MonoBehaviour
     private Animator Player1Anim;
     int PunchHash = Animator.StringToHash("Punch");
     int KickHash = Animator.StringToHash("Kick");
+    int DashHash = Animator.StringToHash("IsRunning");
     public Collider[] attackHitBoxes;
     private float timeBetweenAttacks = 0.3f;
     private float attackTimer;
-  
+    float ButtonCooler; // Half a second before reset
+    int ButtonCount = 0;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -71,6 +74,36 @@ public class PlayerOneFightScript : MonoBehaviour
 
         // This is the players vertical movement. This makes it so the player is effected by gravity and can jump.
         movementVector.y = verticalVelocity;
+
+        // Double tap detection for the dash or "sprint"
+        if (Input.anyKeyDown)
+        {
+
+            if (ButtonCooler > 0 && ButtonCount == 1/*Number of Taps you want Minus One*/)
+            {
+                //Has double tapped
+                Debug.Log("Double Tap");
+                Player1Anim.SetTrigger(DashHash);
+               
+
+            }
+            else
+            {
+                ButtonCooler = 0.5f;
+                ButtonCount += 1;
+            }
+        }
+
+        if (ButtonCooler > 0)
+        {
+
+            ButtonCooler -= 1 * Time.deltaTime;
+
+        }
+        else
+        {
+            ButtonCount = 0;
+        }
 
         //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
         controller.Move(movementVector * Time.deltaTime);
