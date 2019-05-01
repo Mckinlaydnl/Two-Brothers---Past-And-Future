@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
             if (playerTransforms[i].position.x < xMin)
                 xMin = playerTransforms[i].position.x;
 
-            if (playerTransforms[i].position.y > xMax)
+            if (playerTransforms[i].position.x > xMax)
                 xMax = playerTransforms[i].position.x;
 
             if (playerTransforms[i].position.y < yMin)

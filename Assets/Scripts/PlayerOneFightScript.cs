@@ -15,8 +15,7 @@ public class PlayerOneFightScript : MonoBehaviour
     public Collider[] attackHitBoxes;
     private float timeBetweenAttacks = 0.3f;
     private float attackTimer;
-    float ButtonCooler; // Half a second before reset
-    int ButtonCount = 0;
+    
 
     private void Start()
     {
@@ -50,8 +49,8 @@ public class PlayerOneFightScript : MonoBehaviour
         if(controller.isGrounded)
         {
             verticalVelocity = -1;
-            // If the player has pressed space, let them jump.
-            if (Input.GetKeyDown(KeyCode.Space))
+            // If the player has pressed W, let them jump.
+            if (Input.GetKeyDown(KeyCode.W))
             {
                
                 verticalVelocity = 10;
@@ -75,35 +74,18 @@ public class PlayerOneFightScript : MonoBehaviour
         // This is the players vertical movement. This makes it so the player is effected by gravity and can jump.
         movementVector.y = verticalVelocity;
 
-        // Double tap detection for the dash or "sprint"
-        if (Input.anyKeyDown)
-        {
+       
+       
 
-            if (ButtonCooler > 0 && ButtonCount == 1/*Number of Taps you want Minus One*/)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                //Has double tapped
-                Debug.Log("Double Tap");
+            // Dash whenever space button is pressed
+                Debug.Log("Dash");
                 Player1Anim.SetTrigger(DashHash);
-               
-
+                movementVector.x = 0;
+                movementVector.x = Input.GetAxis("Horizontal") * 50;
             }
-            else
-            {
-                ButtonCooler = 0.5f;
-                ButtonCount += 1;
-            }
-        }
-
-        if (ButtonCooler > 0)
-        {
-
-            ButtonCooler -= 1 * Time.deltaTime;
-
-        }
-        else
-        {
-            ButtonCount = 0;
-        }
+        
 
         //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
         controller.Move(movementVector * Time.deltaTime);
