@@ -15,6 +15,7 @@ public class PlayerOneFightScript : MonoBehaviour
     private float attackTimer;
     int noOfButtonPresses; //Determines Which Animation Will Play
     bool canPressButton; //Locks ability to press button during animation event
+    float idleTimer = 0.5f;
 
     private void Start()
     {
@@ -58,6 +59,9 @@ public class PlayerOneFightScript : MonoBehaviour
         {
             verticalVelocity -= 14 * Time.deltaTime;
         }
+
+        
+
         //Initialise movementVector
         movementVector = Vector3.zero;
 
@@ -72,7 +76,7 @@ public class PlayerOneFightScript : MonoBehaviour
         // This is the players vertical movement. This makes it so the player is effected by gravity and can jump.
         movementVector.y = verticalVelocity;
 
-
+        
 
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -92,22 +96,24 @@ public class PlayerOneFightScript : MonoBehaviour
 
     private void StartAttack(Collider collider)
     {
-        // Detects if the hitbox overlaps the enemy players hitbox.
-        Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation, LayerMask.GetMask("HitBox"));
-        foreach (Collider c in colliders)
+        if (noOfButtonPresses != 3)
         {
-            if (c.transform.root == transform)
-                continue;
+            // Detects if the hitbox overlaps the enemy players hitbox.
+            Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation, LayerMask.GetMask("HitBox"));
+            foreach (Collider c in colliders)
+            {
+                if (c.transform.root == transform)
+                    continue;
 
-            Debug.Log(c.name);
+                Debug.Log(c.name);
 
-            // Set up the damage for each hit
-            float damage = 5;
+                // Set up the damage for each hit
+                float damage = 5;
 
-            // Tells the enemy that they have taken damage
-            c.SendMessageUpwards("RecieveDamage", damage);
+                // Tells the enemy that they have taken damage
+                c.SendMessageUpwards("RecieveDamage", damage);
+            }
         }
-
     }
 
     void ComboStarter()
@@ -128,6 +134,7 @@ public class PlayerOneFightScript : MonoBehaviour
 
         canPressButton = false;
 
+
         if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch") && noOfButtonPresses == 1)
         {//If the first animation is still playing and only 1 button has been pressed, return to idle
             Player1Anim.SetInteger("Animation", 4);
@@ -139,7 +146,7 @@ public class PlayerOneFightScript : MonoBehaviour
         {//If the first animation is still playing and at least 2 buttons has been pressed, continue the combo
             Player1Anim.SetInteger("Animation", 33);
             canPressButton = true;
-            noOfButtonPresses = 0;
+        
         }
 
         if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") && noOfButtonPresses == 2)
@@ -153,7 +160,7 @@ public class PlayerOneFightScript : MonoBehaviour
         {//If the second animation is still playing and only 2 buttons have been pressed, continue the combo
             Player1Anim.SetInteger("Animation", 6);
             canPressButton = true;
-            noOfButtonPresses = 0;
+            
         }
 
         if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 3"))
@@ -163,7 +170,23 @@ public class PlayerOneFightScript : MonoBehaviour
             noOfButtonPresses = 0;
         }
 
+        PlayIdle();
+       
 
+    }
+
+    void PlayIdle()
+    {
+        idleTimer = -Time.deltaTime;
+
+        if (idleTimer == 0)
+        {
+            if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch") & Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 3"))
+            {
+                noOfButtonPresses = 0;
+                Player1Anim.Play("Idle");
+            }
+        }
     }
 }
 
