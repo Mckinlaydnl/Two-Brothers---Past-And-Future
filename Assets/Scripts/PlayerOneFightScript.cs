@@ -38,11 +38,13 @@ public class PlayerOneFightScript : MonoBehaviour
         if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.O)))
         {
             StartAttack(attackHitBoxes[0]);
+            Player1Anim.SetInteger("Animation", 31);
             ComboStarter();
         }
         if (Time.time >= attackTimer && (Input.GetKeyDown(KeyCode.P)))
         {
             StartAttack(attackHitBoxes[1]);
+            Player1Anim.SetInteger("Animation", 30);
             ComboStarter();
         }
         if (controller.isGrounded)
@@ -92,7 +94,21 @@ public class PlayerOneFightScript : MonoBehaviour
         //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
         controller.Move(movementVector * Time.deltaTime);
 
-    }
+        // If no animation is playing, play idle animation
+        idleTimer = -Time.deltaTime;
+
+        if (idleTimer == 0)
+        {
+            if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch") & Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 3")
+                & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick") & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick 2") & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick 3"))
+            {
+                noOfButtonPresses = 0;
+                Player1Anim.Play("Idle");
+            }
+        }
+    
+
+}
 
     private void StartAttack(Collider collider)
     {
@@ -125,7 +141,7 @@ public class PlayerOneFightScript : MonoBehaviour
 
         if (noOfButtonPresses == 1)
         {
-            Player1Anim.SetInteger("Animation", 31);
+            //Player1Anim.SetInteger("Animation", 31);
         }
     }
 
@@ -170,24 +186,48 @@ public class PlayerOneFightScript : MonoBehaviour
             noOfButtonPresses = 0;
         }
 
-        PlayIdle();
+        if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick") && noOfButtonPresses == 1)
+        {
+
+            Player1Anim.SetInteger("Animation", 4);
+            canPressButton = true;
+            noOfButtonPresses = 0;
+        }
+
+        if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick") && noOfButtonPresses >= 2)
+        {//If the first animation is still playing and at least 2 buttons has been pressed, continue the combo
+            Player1Anim.SetInteger("Animation", 20);
+            canPressButton = true;
+        }
+
+        if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick 2") && noOfButtonPresses == 2)
+        {
+            // If the second animation is playing and no extra buttons are pressed, just go back to idle
+            Player1Anim.SetInteger("Animation", 4);
+            canPressButton = true;
+            noOfButtonPresses = 0;
+        }
+
+        if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick 2") && noOfButtonPresses >= 3)
+        {//If the second animation is still playing and at least 3 buttons has been pressed, continue the combo
+            Player1Anim.SetInteger("Animation", 25);
+            canPressButton = true;
+        }
+
+        if (Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick 3"))
+        {//Since this is the last animation, just go back to idle
+            Player1Anim.SetInteger("Animation", 4);
+            canPressButton = true;
+            noOfButtonPresses = 0;
+        }
+
+        
        
 
     }
 
-    void PlayIdle()
-    {
-        idleTimer = -Time.deltaTime;
-
-        if (idleTimer == 0)
-        {
-            if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") & !Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch") & Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack 3"))
-            {
-                noOfButtonPresses = 0;
-                Player1Anim.Play("Idle");
-            }
-        }
-    }
+    
+       
 }
 
 

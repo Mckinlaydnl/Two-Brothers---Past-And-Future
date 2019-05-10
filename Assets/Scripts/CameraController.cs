@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
 
 
         
-        transform.position = new Vector3(xMiddle, yMiddle + 1, -distance);
+        transform.position = new Vector3(xMiddle, (float)(yMiddle + 1.5), -distance);
        
 
     }
