@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 442}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 547
     height: 931
-  m_MinSize: {x: 277, y: 292}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 275, y: 271}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
   controlID: 12
 --- !u!114 &4
@@ -91,10 +91,10 @@ MonoBehaviour:
     y: 30
     width: 1904
     height: 931
-  m_MinSize: {x: 509, y: 392}
+  m_MinSize: {x: 507, y: 392}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 116
+  controlID: 35
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -113,8 +113,8 @@ MonoBehaviour:
     y: 311
     width: 547
     height: 620
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 117
+  controlID: 36
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -293,14 +293,14 @@ MonoBehaviour:
     - {fileID: 1107037490765799728, guid: b2a832f0ca1be0a4badad5c1270e6735, type: 2}
     - {fileID: 1107355629501222302, guid: f804aecc621ae4646a437041a0a5fcbe, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.83087504
+    - e00: 1
       e01: 0
       e02: 0
-      e03: 24.369598
+      e03: -5
       e10: 0
-      e11: 0.83087504
+      e11: 1
       e12: 0
-      e13: -135.70831
+      e13: -245
       e20: 0
       e21: 0
       e22: 1
@@ -593,22 +593,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations/Warrior Pack Bundle 1 FREE/Ninja Warrior Mecanim Animation
-      Pack Free/Animations
+    - Assets/Animations/Kicks
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Animations/Warrior Pack Bundle 1 FREE/Ninja Warrior Mecanim Animation Pack
-    Free/Animations
+  - Assets/Animations/Kicks
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\0809903\source\repos\Two-Brothers---Past-And-Future
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 569}
-    m_SelectedIDs: e22b0000
-    m_LastClickedID: 11234
-    m_ExpandedIDs: 00000000082a0000d42a0000502b0000542b0000942b00009e2c0000062f0000be2f0000de2f0000683300006a3300006c3300006e3300007033000000ca9a3b
+    scrollPos: {x: 0, y: 313}
+    m_SelectedIDs: 1c2b0000
+    m_LastClickedID: 11036
+    m_ExpandedIDs: 00000000062a0000d22a00004e2b0000522b0000922b00009c2c0000042f0000bc2f0000dc2f0000683300006a3300006c3300006e3300007033000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -636,7 +634,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000082a0000d42a0000502b0000542b0000942b00009e2c0000062f0000be2f0000de2f0000683300006a3300006c3300006e33000070330000
+    m_ExpandedIDs: 00000000062a0000d22a00004e2b0000522b0000922b00009c2c0000042f0000bc2f0000dc2f0000683300006a3300006c3300006e33000070330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -664,7 +662,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000da65000076700000ba360000ec3a0000940d00003a2d0000562d0000962e0000722e0000dc2f0000902d0000722d0000962d0000
+    m_ExpandedInstanceIDs: c6230000da65000076700000ba360000ec3a0000940d00003a2d0000562d0000962e0000722e0000dc2f0000902d0000722d0000962d0000962a0000422f0000702d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -752,7 +750,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: de320000
+    m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: e0fbffff00000000
     m_RenameOverlay:
