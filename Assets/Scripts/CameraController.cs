@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
    
     private Transform[] playerTransforms; // Array for all the players
     public float yOffSet = 2.0f; //Private variable to store the yoffset distance between the players and camera
-    public float minDistance = 7.5f;
+    public float minDistance = 100f;
     private float xMin, xMax, yMin, yMax;
 
     // Use this for initialization
