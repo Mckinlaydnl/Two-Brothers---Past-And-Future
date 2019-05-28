@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 950, y: 442}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 547
     height: 311
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -67,10 +67,10 @@ MonoBehaviour:
     y: 0
     width: 547
     height: 931
-  m_MinSize: {x: 277, y: 271}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 277, y: 292}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 85
+  controlID: 48
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_MinSize: {x: 509, y: 392}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 84
+  controlID: 24
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
     y: 0
     width: 1904
     height: 981
-  m_MinSize: {x: 950, y: 442}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &8
 MonoBehaviour:
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 45
+  controlID: 25
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -542,9 +542,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
-    m_Target: 9.552377
+    m_Target: 18.777916
     speed: 2
-    m_Value: 9.552377
+    m_Value: 18.777916
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -627,20 +627,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Animations/FightingMotionsVolume1/Animator
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Animations/FightingMotionsVolume1/Animator
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: E:\Two-Brothers---Past-And-Future
+  m_LastProjectPath: C:\Users\0809903\source\repos\Two-Brothers---Past-And-Future
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 569}
-    m_SelectedIDs: 600e0000
-    m_LastClickedID: 3680
-    m_ExpandedIDs: 000000007c090000480a0000c40a0000c80a0000080b0000120c00007a0e0000340f0000540f000076330000783300007a3300007c3300007e33000000ca9a3b
+    scrollPos: {x: 0, y: 217}
+    m_SelectedIDs: 2e2d0000
+    m_LastClickedID: 11566
+    m_ExpandedIDs: 00000000142a0000e02a00005c2b0000602b0000a02b0000aa2c0000122f0000cc2f0000ec2f0000903300009233000094330000963300009833000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,7 +668,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007c090000480a0000c40a0000c80a0000080b0000120c00007a0e0000340f0000540f000076330000783300007a3300007c3300007e330000
+    m_ExpandedIDs: 00000000142a0000e02a00005c2b0000602b0000a02b0000aa2c0000122f0000cc2f0000ec2f00009033000092330000943300009633000098330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -784,9 +784,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7e010000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: e0fbffff00000000
+    m_ExpandedIDs: 60fbffff0000000078310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -50,6 +50,21 @@ public class PlayerTwoFighterScript : MonoBehaviour
         // Inputs. The player cannot make an input whilst taking damage
         if (takingDamage == false)
         {
+            //Initialise movementVector
+            movementVector = Vector3.zero;
+
+            //Movement for the game    
+            // Lets player jump
+            movementVector.y = verticalVelocity;
+
+            // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
+            movementVector.x = (float)(Input.GetAxis("Horizontal2") * 4.5);
+
+            if (playerIsAttacking == false)
+            {
+                //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
+                controller.Move(movementVector * Time.deltaTime);
+            }
 
 
             // Attack Inputs
@@ -70,20 +85,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
                 Player2Anim.SetFloat("Speed", 0);
                 playerIsAttacking = true;
             }
-            if (controller.isGrounded)
-            {
-                verticalVelocity = -1;
-                // If the player has pressed W, let them jump.
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-
-                    verticalVelocity = 10;
-                }
-            }
-            else
-            {
-                verticalVelocity -= 14 * Time.deltaTime;
-            }
+       
             // Blocking for if player is on the left
             if (transform.position.x < enemyPlayer.transform.position.x)
             {
@@ -112,28 +114,34 @@ public class PlayerTwoFighterScript : MonoBehaviour
                 }
             }
 
-            // Check if players x is higher than enemies and if it is, flip the sprite.
-            if (transform.position.x > enemyPlayer.transform.position.x)
-            {
-                transform.eulerAngles = new Vector3(0, 270, 0);
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 90, 0);
-            }
+
+         
 
         }
+        if (controller.isGrounded)
+        {
+            verticalVelocity = -1;
+            // If the player has pressed W, let them jump.
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
 
-        //Initialise movementVector
-        movementVector = Vector3.zero;
+                verticalVelocity = 10;
+            }
+        }
+        else
+        {
+            verticalVelocity -= 14 * Time.deltaTime;
+        }
 
-        //Movement for the game    
-        // Lets player jump
-        movementVector.y = verticalVelocity;
-
-        // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
-        movementVector.x = Input.GetAxis("Horizontal2") * 3;
-
+        // Check if players x is higher than enemies and if it is, flip the sprite.
+        if (transform.position.x > enemyPlayer.transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 270, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 90, 0);
+        }
 
 
         // Lets the animator know if the player is moving and uses the appropriate animation
@@ -148,11 +156,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
             movementVector.x = Input.GetAxis("Horizontal2") * 50;
         }
 
-        if (playerIsAttacking == false)
-        {
-            //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
-            controller.Move(movementVector * Time.deltaTime);
-        }
+      
 
         
 

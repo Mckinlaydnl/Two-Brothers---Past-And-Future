@@ -47,10 +47,34 @@ public class PlayerOneFightScript : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
 
+       
+
         // Inputs. The player cannot make an input whilst taking damage
         if (takingDamage == false)
         {
+            if (controller.isGrounded)
+            {
+                verticalVelocity = -1;
+                // If the player has pressed W, let them jump.
+                if (Input.GetKeyDown(KeyCode.W))
+                {
 
+                    verticalVelocity += 10;
+                }
+            }
+            else
+            {
+                verticalVelocity -= 14 * Time.deltaTime;
+            }
+            //Initialise movementVector
+            movementVector = Vector3.zero;
+
+            //Movement for the game    
+            // Lets player jump
+            movementVector.y = verticalVelocity;
+
+            // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
+            movementVector.x = Input.GetAxis("Horizontal") * 3;
 
             // Attack Inputs
             if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch")
@@ -68,20 +92,7 @@ public class PlayerOneFightScript : MonoBehaviour
                 Player1Anim.SetFloat("Speed", 0);
                 playerIsAttacking = true;
             }
-            if (controller.isGrounded)
-            {
-                verticalVelocity = -1;
-                // If the player has pressed W, let them jump.
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-
-                    verticalVelocity = 10;
-                }
-            }
-            else
-            {
-                verticalVelocity -= 14 * Time.deltaTime;
-            }
+          
             // Blocking for if player is on the left
             if (transform.position.x < enemyPlayer.transform.position.x)
             {
@@ -112,22 +123,14 @@ public class PlayerOneFightScript : MonoBehaviour
 
         }
 
-        //Initialise movementVector
-        movementVector = Vector3.zero;
-
-        //Movement for the game    
-        // Lets player jump
-        movementVector.y = verticalVelocity;
-
-        // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
-        movementVector.x = Input.GetAxis("Horizontal") * 3;
+     
 
 
 
         // Lets the animator know if the player is moving and uses the appropriate animation
         Player1Anim.SetFloat("Speed", movementVector.x);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
         {
             // Dash whenever space button and player is holding a movement key is pressed
             Debug.Log("Dash");
@@ -332,4 +335,7 @@ public class PlayerOneFightScript : MonoBehaviour
     {
         takingDamage = false;
     }
+
+   
+
 }
