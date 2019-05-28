@@ -50,6 +50,22 @@ public class PlayerTwoFighterScript : MonoBehaviour
         // Inputs. The player cannot make an input whilst taking damage
         if (takingDamage == false)
         {
+            // Gravity and Jump function
+            if (controller.isGrounded)
+            {
+                verticalVelocity = -1;
+                // If the player has pressed W, let them jump.
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                    verticalVelocity = 10;
+                }
+            }
+            else
+            {
+                verticalVelocity -= 14 * Time.deltaTime;
+            }
+
             //Initialise movementVector
             movementVector = Vector3.zero;
 
@@ -58,7 +74,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
             movementVector.y = verticalVelocity;
 
             // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
-            movementVector.x = (float)(Input.GetAxis("Horizontal2") * 4.5);
+            movementVector.x = (float)(Input.GetAxis("Horizontal2") * 3);
 
             if (playerIsAttacking == false)
             {
@@ -66,26 +82,28 @@ public class PlayerTwoFighterScript : MonoBehaviour
                 controller.Move(movementVector * Time.deltaTime);
             }
 
-
-            // Attack Inputs
-            if (!Player2Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch")
-                && Input.GetKeyDown(KeyCode.Z))
+            // Only let player attack if they are on the ground.
+            if (controller.isGrounded)
             {
-                Player2Anim.SetInteger("Animation", 31);
-                StartAttack(attackHitBoxes[0]);
-                ComboStarter();
-                Player2Anim.SetFloat("Speed", 0);
-                playerIsAttacking = true;
+                // Attack Inputs
+                if (!Player2Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch")
+                    && Input.GetKeyDown(KeyCode.Z))
+                {
+                    Player2Anim.SetInteger("Animation", 31);
+                    StartAttack(attackHitBoxes[0]);
+                    ComboStarter();
+                    Player2Anim.SetFloat("Speed", 0);
+                    playerIsAttacking = true;
+                }
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Player2Anim.SetInteger("Animation", 30);
+                    StartAttack(attackHitBoxes[1]);
+                    ComboStarter();
+                    Player2Anim.SetFloat("Speed", 0);
+                    playerIsAttacking = true;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Player2Anim.SetInteger("Animation", 30);
-                StartAttack(attackHitBoxes[1]);
-                ComboStarter();
-                Player2Anim.SetFloat("Speed", 0);
-                playerIsAttacking = true;
-            }
-       
             // Blocking for if player is on the left
             if (transform.position.x < enemyPlayer.transform.position.x)
             {
@@ -118,20 +136,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
          
 
         }
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -1;
-            // If the player has pressed W, let them jump.
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-
-                verticalVelocity = 10;
-            }
-        }
-        else
-        {
-            verticalVelocity -= 14 * Time.deltaTime;
-        }
+    
 
         // Check if players x is higher than enemies and if it is, flip the sprite.
         if (transform.position.x > enemyPlayer.transform.position.x)

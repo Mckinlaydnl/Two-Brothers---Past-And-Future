@@ -76,23 +76,26 @@ public class PlayerOneFightScript : MonoBehaviour
             // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
             movementVector.x = Input.GetAxis("Horizontal") * 3;
 
-            // Attack Inputs
-            if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch")
-                && Input.GetKeyDown(KeyCode.O))
+            // Only let player attack if they are on the ground
+            if (controller.isGrounded)
             {
-                Player1Anim.SetInteger("Animation", 31);
-                ComboStarter();
-                Player1Anim.SetFloat("Speed", 0);
-                playerIsAttacking = true;
+                // Attack Inputs
+                if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Punch")
+                    && Input.GetKeyDown(KeyCode.O))
+                {
+                    Player1Anim.SetInteger("Animation", 31);
+                    ComboStarter();
+                    Player1Anim.SetFloat("Speed", 0);
+                    playerIsAttacking = true;
+                }
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    Player1Anim.SetInteger("Animation", 30);
+                    ComboStarter();
+                    Player1Anim.SetFloat("Speed", 0);
+                    playerIsAttacking = true;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Player1Anim.SetInteger("Animation", 30);
-                ComboStarter();
-                Player1Anim.SetFloat("Speed", 0);
-                playerIsAttacking = true;
-            }
-          
             // Blocking for if player is on the left
             if (transform.position.x < enemyPlayer.transform.position.x)
             {
