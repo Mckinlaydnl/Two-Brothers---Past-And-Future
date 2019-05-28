@@ -75,7 +75,7 @@ public class PlayerOneFightScript : MonoBehaviour
 
             // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
             movementVector.x = Input.GetAxis("Horizontal") * 3;
-
+            
             // Only let player attack if they are on the ground
             if (controller.isGrounded)
             {
