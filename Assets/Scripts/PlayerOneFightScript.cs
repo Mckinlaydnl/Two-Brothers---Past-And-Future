@@ -21,10 +21,8 @@ public class PlayerOneFightScript : MonoBehaviour
     private Animator Player1Anim;
     int DashHash = Animator.StringToHash("IsRunning");
 
-    // Audio Variables
-    public AudioClip hitSoundClip;
 
-    public AudioSource hitSoundSource;
+    
 
 
     private void Start()
@@ -35,7 +33,7 @@ public class PlayerOneFightScript : MonoBehaviour
         noOfButtonPresses = 0;
         canPressButton = true;
 
-        hitSoundSource.clip = hitSoundClip;
+      
     }
 
 
@@ -47,7 +45,7 @@ public class PlayerOneFightScript : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
 
-       
+      
 
         // Inputs. The player cannot make an input whilst taking damage
         if (takingDamage == false)
@@ -129,9 +127,18 @@ public class PlayerOneFightScript : MonoBehaviour
      
 
 
+        if (transform.position.x < enemyPlayer.transform.position.x)
+        {
+            // Lets the animator know if the player is moving and uses the appropriate animation
+            Player1Anim.SetFloat("Speed", movementVector.x);
+        }
 
-        // Lets the animator know if the player is moving and uses the appropriate animation
-        Player1Anim.SetFloat("Speed", movementVector.x);
+        if (transform.position.x > enemyPlayer.transform.position.x)
+        {
+            // Lets the animator know if the player is moving and uses the appropriate animation
+            Player1Anim.SetFloat("Speed", -movementVector.x);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
         {
@@ -270,6 +277,7 @@ public class PlayerOneFightScript : MonoBehaviour
             noOfButtonPresses = 0;
             playerIsAttacking = false;
             enemyDamageCheck(attackHitBoxes[1]);
+            
         }
 
     }
@@ -313,15 +321,17 @@ public class PlayerOneFightScript : MonoBehaviour
                 Debug.Log("Enemy is not taking damage");
             
         }
-        }
+
+    }
+
+   
 
     private void RecieveDamage(float damage)
     {
         if (playerIsBlocking == false)
-        {
+        { 
             takingDamage = true;
             Debug.Log("Took damage");
-            hitSoundSource.Play();
         }
         else
         {
@@ -338,7 +348,5 @@ public class PlayerOneFightScript : MonoBehaviour
     {
         takingDamage = false;
     }
-
-   
-
+  
 }

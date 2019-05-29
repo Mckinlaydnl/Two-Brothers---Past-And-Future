@@ -21,12 +21,6 @@ public class PlayerTwoFighterScript : MonoBehaviour
     private Animator Player2Anim;
     int DashHash = Animator.StringToHash("IsRunning");
 
-    // Audio Variables
-    public AudioClip hitSoundClip;
-
-    public AudioSource hitSoundSource;
-
-
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -35,7 +29,6 @@ public class PlayerTwoFighterScript : MonoBehaviour
         noOfButtonPresses = 0;
         canPressButton = true;
 
-        hitSoundSource.clip = hitSoundClip;
     }
 
 
@@ -95,7 +88,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
                     Player2Anim.SetFloat("Speed", 0);
                     playerIsAttacking = true;
                 }
-                if (Input.GetKeyDown(KeyCode.X))
+                if (!Player2Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick") && Input.GetKeyDown(KeyCode.X))
                 {
                     Player2Anim.SetInteger("Animation", 30);
                     StartAttack(attackHitBoxes[1]);
@@ -148,9 +141,19 @@ public class PlayerTwoFighterScript : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 90, 0);
         }
 
+        // If the player is on the left side, make movement vector positive to play the correct animation
+        if (transform.position.x < enemyPlayer.transform.position.x)
+        {
+            // Lets the animator know if the player is moving and uses the appropriate animation
+            Player2Anim.SetFloat("Speed", movementVector.x);
+        }
 
-        // Lets the animator know if the player is moving and uses the appropriate animation
-        Player2Anim.SetFloat("Speed", movementVector.x);
+        // If the player is on the right side, make movement vector negative to play the correct animation
+        if (transform.position.x > enemyPlayer.transform.position.x)
+        {
+            // Lets the animator know if the player is moving and uses the appropriate animation
+            Player2Anim.SetFloat("Speed", -movementVector.x);
+        }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -303,7 +306,6 @@ public class PlayerTwoFighterScript : MonoBehaviour
         {
             takingDamage = true;
             Debug.Log("Took damage");
-            hitSoundSource.Play();
         }
     }
 
@@ -326,6 +328,10 @@ public class PlayerTwoFighterScript : MonoBehaviour
         }
     }
 
+
+
+
+
     public bool checkBlocking()
     {
         return playerIsBlocking;
@@ -335,5 +341,7 @@ public class PlayerTwoFighterScript : MonoBehaviour
     {
         takingDamage = false;
     }
+
+
 }
 

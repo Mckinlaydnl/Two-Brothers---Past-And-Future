@@ -67,9 +67,12 @@
     <Compile Include="Assets\MyAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\PlayerOneFightScript.cs" />
     <Compile Include="Assets\Scripts\PlayerOneHealthBar.cs" />
     <Compile Include="Assets\Scripts\PlayerTwoFighterScript.cs" />
+    <None Include="Assets\MyAssets\TSF\Shaders\TSFOutline.shader" />
+    <None Include="Assets\MyAssets\TSF\Shaders\TSF.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/pieta/Documents/GitHub/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

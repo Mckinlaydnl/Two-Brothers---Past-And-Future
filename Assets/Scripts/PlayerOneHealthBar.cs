@@ -13,10 +13,18 @@ public class PlayerOneHealthBar : MonoBehaviour
     private float maxHealthPoints = 100;
     public PlayerOneFightScript playerScript;
     bool playerBlocking;
+
+    // Audio Variables
+    public AudioClip musicSoundClip;
+
+    public AudioSource musicSoundSource;
     void Start()
     {
         UpdateHealthBar();
         playerBlocking = playerScript.checkBlocking();
+
+        musicSoundSource.clip = musicSoundClip;
+        musicSoundSource.Play();
     }
 
 
@@ -24,6 +32,11 @@ public class PlayerOneHealthBar : MonoBehaviour
     void Update()
     {
         GameOver(healthPoints);
+        if (Input.GetKeyDown(KeyCode.Home))
+        {
+            Scene currentScene = SceneManager.GetActiveScene(); SceneManager.LoadScene(currentScene.name);
+        }
+       
 
     }
     private void UpdateHealthBar()
