@@ -21,8 +21,14 @@ public class PlayerOneFightScript : MonoBehaviour
     private Animator Player1Anim;
     int DashHash = Animator.StringToHash("IsRunning");
 
-
     
+    // Audio Variables
+    public AudioClip hitSoundClip;
+
+    public AudioSource hitSoundSource;
+
+
+
 
 
     private void Start()
@@ -33,7 +39,8 @@ public class PlayerOneFightScript : MonoBehaviour
         noOfButtonPresses = 0;
         canPressButton = true;
 
-      
+        hitSoundSource.clip = hitSoundClip;
+
     }
 
 
@@ -45,6 +52,12 @@ public class PlayerOneFightScript : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
 
+        // Player cannot move whilst being attacked so the correct animation should play
+        if (takingDamage == true)
+        {
+            Player1Anim.SetFloat("Speed", 0);
+            movementVector.x = 0;
+        }
       
 
         // Inputs. The player cannot make an input whilst taking damage
@@ -71,9 +84,18 @@ public class PlayerOneFightScript : MonoBehaviour
             // Lets player jump
             movementVector.y = verticalVelocity;
 
-            // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
-            movementVector.x = Input.GetAxis("Horizontal") * 3;
-            
+            if (playerIsAttacking == false)
+            {
+                // Check if the player is attempting to move to the left or right and if so, go that way. If not, stay still.
+                movementVector.x = Input.GetAxis("Horizontal") * 3;
+            }
+
+            //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
+            controller.Move(movementVector * Time.deltaTime);
+
+
+
+
             // Only let player attack if they are on the ground
             if (controller.isGrounded)
             {
@@ -86,9 +108,13 @@ public class PlayerOneFightScript : MonoBehaviour
                     Player1Anim.SetFloat("Speed", 0);
                     playerIsAttacking = true;
                 }
-                if (Input.GetKeyDown(KeyCode.P))
+                if (!Player1Anim.GetCurrentAnimatorStateInfo(0).IsName("Kick")
+                    && Input.GetKeyDown(KeyCode.P))
                 {
-                    Player1Anim.SetInteger("Animation", 30);
+                    if (noOfButtonPresses == 0)
+                    {
+                        Player1Anim.SetInteger("Animation", 30);
+                    }
                     ComboStarter();
                     Player1Anim.SetFloat("Speed", 0);
                     playerIsAttacking = true;
@@ -122,51 +148,41 @@ public class PlayerOneFightScript : MonoBehaviour
                 }
             }
 
+            if (transform.position.x < enemyPlayer.transform.position.x)
+            {
+                // Lets the animator know if the player is moving and uses the appropriate animation
+                Player1Anim.SetFloat("Speed", movementVector.x);
+            }
+
+            if (transform.position.x > enemyPlayer.transform.position.x)
+            {
+                // Lets the animator know if the player is moving and uses the appropriate animation
+                Player1Anim.SetFloat("Speed", -movementVector.x);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+            {
+                // Dash whenever space button and player is holding a movement key is pressed
+                Debug.Log("Dash");
+                Player1Anim.SetTrigger(DashHash);
+                movementVector.x = 0;
+                movementVector.x = Input.GetAxis("Horizontal") * 50;
+            }
+
+
+            // Check if the player is behind enemy and, if so, flip the sprite to face enemy
+            if (transform.position.x > enemyPlayer.transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 270, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 90, 0);
+            }
+
         }
 
-     
-
-
-        if (transform.position.x < enemyPlayer.transform.position.x)
-        {
-            // Lets the animator know if the player is moving and uses the appropriate animation
-            Player1Anim.SetFloat("Speed", movementVector.x);
-        }
-
-        if (transform.position.x > enemyPlayer.transform.position.x)
-        {
-            // Lets the animator know if the player is moving and uses the appropriate animation
-            Player1Anim.SetFloat("Speed", -movementVector.x);
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
-        {
-            // Dash whenever space button and player is holding a movement key is pressed
-            Debug.Log("Dash");
-            Player1Anim.SetTrigger(DashHash);
-            movementVector.x = 0;
-            movementVector.x = Input.GetAxis("Horizontal") * 50;
-        }
-
-        if (playerIsAttacking == false)
-        {
-            //Below line actually lets player move. DANNY DONT FORGET THIS LINE IN FUTURE!!!!!
-            controller.Move(movementVector * Time.deltaTime);
-        }
-
-        // Check if the player is behind enemy and, if so, flip the sprite to face enemy
-        if (transform.position.x > enemyPlayer.transform.position.x)
-        {
-            transform.eulerAngles = new Vector3(0, 270, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 90, 0);
-        }
-
-
-
+        
 
     }
     void ComboStarter()
@@ -180,6 +196,7 @@ public class PlayerOneFightScript : MonoBehaviour
 
     void ComboCheck()
     {
+        
 
         canPressButton = false;
         // Set animator to avoid errors
@@ -331,6 +348,7 @@ public class PlayerOneFightScript : MonoBehaviour
         if (playerIsBlocking == false)
         { 
             takingDamage = true;
+            hitSoundSource.Play();
             Debug.Log("Took damage");
         }
         else

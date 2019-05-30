@@ -25,8 +25,14 @@ public class CameraController : MonoBehaviour
     // LateUpdate is called after Update each frame
     void LateUpdate()
     {
+        // If the escape key is pressed, exit the application
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+
         // For debugging
-       if(playerTransforms.Length == 0)
+        if (playerTransforms.Length == 0)
         {
             Debug.Log("Idiot, there are no players");
             return;
@@ -58,7 +64,7 @@ public class CameraController : MonoBehaviour
 
 
         
-        transform.position = new Vector3(xMiddle, (float)(yMiddle + 1.5), (float)(-distance-2));
+        transform.position = new Vector3(xMiddle, (float)(yMiddle + 1.5), (float)(-distance-4));
        
 
     }

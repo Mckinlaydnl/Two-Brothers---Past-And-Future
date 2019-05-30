@@ -12,6 +12,7 @@ public class PlayerOneHealthBar : MonoBehaviour
     private float healthPoints = 100;
     private float maxHealthPoints = 100;
     public PlayerOneFightScript playerScript;
+    public RoundsScript roundScript;
     bool playerBlocking;
 
     // Audio Variables
@@ -21,7 +22,7 @@ public class PlayerOneHealthBar : MonoBehaviour
     void Start()
     {
         UpdateHealthBar();
-        playerBlocking = playerScript.checkBlocking();
+       
 
         musicSoundSource.clip = musicSoundClip;
         musicSoundSource.Play();
@@ -36,7 +37,8 @@ public class PlayerOneHealthBar : MonoBehaviour
         {
             Scene currentScene = SceneManager.GetActiveScene(); SceneManager.LoadScene(currentScene.name);
         }
-       
+
+        playerBlocking = playerScript.checkBlocking();
 
     }
     private void UpdateHealthBar()
@@ -64,8 +66,20 @@ public class PlayerOneHealthBar : MonoBehaviour
     {
         if (healthPoints == 0)
         {
-            Scene currentScene = SceneManager.GetActiveScene(); SceneManager.LoadScene(currentScene.name);
+
+            roundScript.nextRound();
+            
         }
+    }
+
+   public float amountOfHealthPoints()
+    {
+        return healthPoints;
+    }
+    
+    public void resetHealth()
+    {
+        healthPoints = 100;
     }
 
 }

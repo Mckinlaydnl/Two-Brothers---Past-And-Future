@@ -193,14 +193,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9605523
-        functionName: PlayIdle
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 5a377703d0310c947a569bcfaa3d4351,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

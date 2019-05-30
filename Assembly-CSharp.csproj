@@ -67,23 +67,26 @@
     <Compile Include="Assets\MyAssets\CyberPunk\Scripts\Perspective2DSortMode.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\lastScreenScript.cs" />
+    <Compile Include="Assets\Scripts\LoadLevel2Script.cs" />
+    <Compile Include="Assets\Scripts\LoadLevel3Script.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\PlayerOneFightScript.cs" />
     <Compile Include="Assets\Scripts\PlayerOneHealthBar.cs" />
     <Compile Include="Assets\Scripts\PlayerTwoFighterScript.cs" />
-    <None Include="Assets\MyAssets\TSF\Shaders\TSFOutline.shader" />
-    <None Include="Assets\MyAssets\TSF\Shaders\TSF.shader" />
+    <Compile Include="Assets\Scripts\PlayerTwoHealthBar.cs" />
+    <Compile Include="Assets\Scripts\RoundsScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/pieta/Documents/GitHub/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>E:/Game/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/pieta/Documents/GitHub/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/Game/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/pieta/Documents/GitHub/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>E:/Game/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/pieta/Documents/GitHub/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/Game/Two-Brothers---Past-And-Future/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
